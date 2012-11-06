@@ -7,7 +7,7 @@
 class ceasarDecryptTest : public CxxTest::TestSuite
 {
 public:
-	/// Test encryption on all single character strings with a shift of 1
+	/// Test decryption on all single character strings with a shift of 1
     void testSingleCharsShiftedByOne(void)
     {
         TS_ASSERT_EQUALS( ceasar_decrypt( "B", 1), "a" );
@@ -37,7 +37,7 @@ public:
         TS_ASSERT_EQUALS( ceasar_decrypt( "Z", 1), "y" );
         TS_ASSERT_EQUALS( ceasar_decrypt( "A", 1), "z" );
     }
-    /// Test encryption on a en empty string
+    /// Test decryption on a en empty string
     void testEmptyString(void)
     {
         TS_ASSERT_EQUALS( ceasar_decrypt( "", 1), "" );
@@ -67,7 +67,7 @@ public:
         TS_ASSERT_EQUALS( ceasar_decrypt( "", 25), "" );
         TS_ASSERT_EQUALS( ceasar_decrypt( "", 26), "" );
     }
-    /// Test encryption on a single character shifted by every number
+    /// Test decryption on a single character shifted by every number
     void testSingleCharShiftedByAll(void)
     {
         TS_ASSERT_EQUALS( ceasar_decrypt( "A", 1), "z" );
@@ -96,7 +96,7 @@ public:
         TS_ASSERT_EQUALS( ceasar_decrypt( "A", 24), "c" );
         TS_ASSERT_EQUALS( ceasar_decrypt( "A", 25), "b" );
     }
-    /// Test encryption with a too high (>=26) shift value
+    /// Test decryption with a too high (>=26) shift value
     void testHighShiftValue(void)
     {
         TS_ASSERT_EQUALS( ceasar_decrypt( "FOO", 26), "foo" );
@@ -138,12 +138,17 @@ public:
     /// Test decrypting with a zero value
     void testZeroShiftValue(void)
     {
-        TS_ASSERT_EQUALS( ceasar_decrypt( "foo", 0), "foo" );
-        TS_ASSERT_EQUALS( ceasar_decrypt( "bar", 0), "bar" );
-        TS_ASSERT_EQUALS( ceasar_decrypt( "smu", 0), "smu" );
+        TS_ASSERT_EQUALS( ceasar_decrypt( "", 0), "" );
+        TS_ASSERT_EQUALS( ceasar_decrypt( "A", 0), "a" );
+        TS_ASSERT_EQUALS( ceasar_decrypt( "a", 0), "a" );
         TS_ASSERT_EQUALS( ceasar_decrypt( "FOO", 0), "foo" );
         TS_ASSERT_EQUALS( ceasar_decrypt( "BAR", 0), "bar" );
         TS_ASSERT_EQUALS( ceasar_decrypt( "SMU", 0), "smu" );
         TS_ASSERT_EQUALS( ceasar_decrypt( "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", 1), "the quick brown fox jumps over the lazy dog" );
+    }
+    /// Test illegal characters
+    void testIllegalCharacters(void)
+    {
+        TS_ASSERT_EQUALS( ceasar_decrypt( " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöbarÁÉÝÚÍÓÞÆÐÖ", 3), " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöyxoÁÉÝÚÍÓÞÆÐÖ" );
     }
 };

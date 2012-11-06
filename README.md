@@ -3,7 +3,7 @@ INTO-Skil10-EgillOgFreyr
 
 Assignment 10. ENCRYPTION - INTO
 
-Authors:  
+Authors:
 * Freyr Bergsteinsson <freyrb12@ru.is>
 * Egill Bjornsson <egillb12@ru.is>
 
