@@ -20,10 +20,12 @@ it starts again from the end.
 The source files for the program can be located in the `src` directory.
 
 To compile:
+
     cd src
     make
 
 To run the program:
+
     ./ceasarcipher
 
 ## Unit tests
@@ -31,5 +33,6 @@ To run the program:
 The unit tests for the methods used by the program are located in the `tests` directory. We use [cxxtest](http://cxxtest.com/) for our unit tests - make sure you have it installed if you wish to run these test!
 
 To run unit test:
+
     cd tests
     make run
