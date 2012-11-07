@@ -7,6 +7,7 @@ using namespace std;
 int main()
 {
     cout << "Welcome!" << endl;
+    cout << ceasar_encrypt( " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöwxyÁÉÝÚÍÓÞÆÐÖ", 3) << endl;
 
     // TODO: Display a menu of choices (1 for encrypt, 2 for decrypt, q for quit)
     // TODO: Ask the user for menu choice

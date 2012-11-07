@@ -66,7 +66,7 @@ x11_runner.cpp: $(GUI_TESTS)
 qt_runner.cpp: $(GUI_TESTS)
 	$(TESTGEN) -o $@ --gui=QtGui $(GUI_TESTS)
 
-%: %.cpp
+%: %.cpp $(OBJ)
 	$(CXXC) -o $@ $< $(OBJ)
 
 yes_no_runner: yes_no_runner.cpp tests.cpp

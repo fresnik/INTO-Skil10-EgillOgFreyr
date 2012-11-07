@@ -32,7 +32,7 @@ To run the program:
 
 The unit tests for the methods used by the program are located in the `tests` directory. We use [cxxtest](http://cxxtest.com/) for our unit tests - make sure you have it installed if you wish to run these test!
 
-To run unit test:
+To run the unit tests:
 
     cd tests
     make run

@@ -139,12 +139,12 @@ public:
     void testZeroShiftValue(void)
     {
         TS_ASSERT_EQUALS( ceasar_encrypt( "", 0), "" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 0), "a" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "A", 0), "a" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "foo", 0), "foo" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "bar", 0), "bar" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "smu", 0), "smu" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "the quick brown fox jumps over the lazy dog", 1), "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 0), "A" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "A", 0), "A" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "foo", 0), "FOO" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "bar", 0), "BAR" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "smu", 0), "SMU" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "the quick brown fox jumps over the lazy dog", 0), "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG" );
     }
     /// Test illegal characters
     void testIllegalCharacters(void)
