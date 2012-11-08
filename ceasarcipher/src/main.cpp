@@ -2,6 +2,7 @@
 #include "ceasar_encrypt.h"
 #include "ceasar_decrypt.h"
 #include <stdlib.h>
+#include <string>
 //#include
 
 using namespace std;
@@ -10,8 +11,43 @@ char choiceMenu();
 
 int main()
 {
-    choiceMenu();
-    cout << "Welcome!" << endl;
+    switch(choiceMenu())
+    {
+        case '1':
+        {
+            cout<<"  -  -  -  Enter message to encrypt   -  -  -  \n";
+            string inputString;
+            getline(cin, inputString);
+            cout<<"  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  \n\n";
+            cout<<"Enter shift value for cypher: ";
+            int shift;
+            cin>>shift;
+            cout<<"\n  -  -  -  encrypted text    -  -  -  -  -  -  \n";
+            cout<<ceasar_encrypt(inputString, shift);
+            cout<<"\n  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  \n";
+        }
+            break;
+        case '2':
+        {
+            cout<<"  -  -  -  Enter message to decrypt   -  -  -  \n";
+            string inputString;
+            getline(cin, inputString);
+            cout<<"  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  \n\n";
+            cout<<"Enter shift value for decypher: ";
+            int shift;
+            cin>>shift;
+            cout<<"\n  -  -  -  Decryptd message  -  -  -  -  -  -  \n";
+            cout<<ceasar_decrypt(inputString, shift);
+            cout<<"\n  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  \n";
+        }
+            break;
+        case 'q':
+        case 'Q':
+            cout<<"\n  -  -  -  Program closing   -  -  -  -  -  -  \n";
+            exit(0);
+            break;
+    }
+
 
     //X TODO: Display a menu of choices (1 for encrypt, 2 for decrypt, q for quit)
     //X TODO: Ask the user for menu choice
@@ -28,16 +64,15 @@ int main()
 
 char choiceMenu()
 {
-    cout <<"Enter 1 to encrypt a message, 2 to decrypt a message or q to leave the program.";
+    cout <<"Enter:\n\t1 to encrypt a message \n\t2 to decrypt a message \n\tq to leave the program\n";
     char inputChoice;
     do
     {
         cin >> inputChoice;
-        if(inputChoice!='1' && inputChoice!='2' && inputChoice!='q')
+        cin.ignore(1024,'\n');
+        if(inputChoice!='1' && inputChoice!='2' && inputChoice!='q' && inputChoice!='Q')
             cout<<"Please enter a valid input(1, 2 or q)\n";
     }
-    while(inputChoice!='1' && inputChoice!='2' && inputChoice!='q');
-    if(inputChoice=='q')
-        exit(EXIT_FAILURE);
+    while(inputChoice!='1' && inputChoice!='2' && inputChoice!='q' && inputChoice!='Q');
     return inputChoice;
 }
