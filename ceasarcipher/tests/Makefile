@@ -3,83 +3,36 @@
 #
 
 # Change this line if you want a different compiler
-CXXC = g++ -Wall -W -Werror -I. -I../src -L../src
+CXXC = g++ -Wall -W -Werror -I. -I../src
 
 TESTGEN = /usr/bin/cxxtestgen
 
-# For the X11 GUI
-X11_FLAGS = -I/usr/X11R6/include -L/usr/X11R6/lib -lX11
-
-# For the Qt GUI
-#QTDIR = /usr/lib/qt
-QTLIB = -lqt-mt
-#QTLIB = -lqt
-QT_FLAGS = -I$(QTDIR)/include -L$(QTDIR)/lib $(QTLIB) -O2
-
-TARGETS = error_printer stdio_printer yes_no_runner file_printer aborter only
-GUI_TARGETS = x11_runner qt_runner
+TARGETS = error_printer
 TESTS = *.h
-GUI_TESTS = gui/GreenYellowRed.h $(TESTS)
 OBJ = ../src/ceasar_encrypt.o ../src/ceasar_decrypt.o
 
 
 all: $(TARGETS)
 
+.PHONY: clean
 clean:
-	rm -f *~ *.o *.obj $(TARGETS) $(GUI_TARGETS)
-	rm -f tests.cpp error_printer.cpp stdio_printer.cpp file_printer.cpp aborter.cpp only.cpp
-	rm -f x11_runner.cpp qt_runner.cpp
+	rm -f *~ *.o *.obj $(TARGETS)
+	rm -f tests.cpp error_printer.cpp
 
+.PHONY: distclean
 distclean: clean
 	rm -f Makefile
 
+.PHONY: run
 run: error_printer
 	./error_printer
-
-run_x11: x11_runner
-	./x11_runner
-
-run_qt: qt_runner
-	./qt_runner
 
 error_printer.cpp: $(TESTS)
 	$(TESTGEN) -o $@ --error-printer $(TESTS)
 
-stdio_printer.cpp: $(TESTS)
-	$(TESTGEN) -o $@ --runner=StdioPrinter $(TESTS)
-
-file_printer.cpp: file_printer.tpl $(TESTS)
-	$(TESTGEN) -o $@ --template=file_printer.tpl $(TESTS)
-
-aborter.cpp: aborter.tpl $(TESTS)
-	$(TESTGEN) -o $@ --template=aborter.tpl $(TESTS)
-
-only.cpp: only.tpl $(TESTS)
-	$(TESTGEN) -o $@ --template=only.tpl $(TESTS)
-
 tests.cpp: $(TESTS)
 	$(TESTGEN) -o $@ $(TESTS)
-
-x11_runner.cpp: $(GUI_TESTS)
-	$(TESTGEN) -o $@ --gui=X11Gui $(GUI_TESTS)
-
-qt_runner.cpp: $(GUI_TESTS)
-	$(TESTGEN) -o $@ --gui=QtGui $(GUI_TESTS)
 
 %: %.cpp $(OBJ)
 	$(CXXC) -o $@ $< $(OBJ)
 
-yes_no_runner: yes_no_runner.cpp tests.cpp
-	$(CXXC) -o $@ $^
-
-x11_runner: x11_runner.cpp
-	$(CXXC) -o $@ $^ $(X11_FLAGS)
-
-qt_runner: qt_runner.cpp
-	$(CXXC) -o $@ $^ $(QT_FLAGS)
-
-#
-# Local Variables:
-# compile-command: "make -fMakefile.unix"
-# End:
-#

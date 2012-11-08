@@ -7,43 +7,91 @@
 class substitutionDecryptTest : public CxxTest::TestSuite
 {
 public:
-    // TODO: Populate m_keyphrases with various test keyphrases
+    void setup(void)
+    {
+        // Keyphrase array includes:
+        // 26 keyphrases of different lengths
+        // Keyphrase with illegal characters only
+        // Keyphrase with illegal characters with lowercase alphabetic characters
+        // Keyphrase with illegal characters with uppercase alphabetic characters
+        // Keyphrase with illegal characters with mixedcase alphabetic characters
+        // 4 keyphrases with uppercase alphabetic characters only
+        // 4 keyphrases with mixedcase alphabetic characters
+        m_keyphrases.push_back( "t" );
+        m_keyphrases.push_back( "th" );
+        m_keyphrases.push_back( "the" );
+        m_keyphrases.push_back( "the q" );
+        m_keyphrases.push_back( "the qu" );
+        m_keyphrases.push_back( "the qui" );
+        m_keyphrases.push_back( "the quic" );
+        m_keyphrases.push_back( "the quick" );
+        m_keyphrases.push_back( "the quick b" );
+        m_keyphrases.push_back( "the quick br" );
+        m_keyphrases.push_back( "the quick bro" );
+        m_keyphrases.push_back( "the quick brow" );
+        m_keyphrases.push_back( "the quick brown" );
+        m_keyphrases.push_back( "the quick brown f" );
+        m_keyphrases.push_back( "the quick brown fox" );
+        m_keyphrases.push_back( "the quick brown fox j" );
+        m_keyphrases.push_back( "the quick brown fox jum" );
+        m_keyphrases.push_back( "the quick brown fox jump" );
+        m_keyphrases.push_back( "the quick brown fox jumps" );
+        m_keyphrases.push_back( "the quick brown fox jumps ov" );
+        m_keyphrases.push_back( "the quick brown fox jumps over the l" );
+        m_keyphrases.push_back( "the quick brown fox jumps over the la" );
+        m_keyphrases.push_back( "the quick brown fox jumps over the laz" );
+        m_keyphrases.push_back( "the quick brown fox jumps over the lazy" );
+        m_keyphrases.push_back( "the quick brown fox jumps over the lazy d" );
+        m_keyphrases.push_back( "the quick brown fox jumps over the lazy dog" );
+        m_keyphrases.push_back( " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöÁÉÝÚÍÓÞÆÐÖ" );
+        m_keyphrases.push_back( " ,.!\"#$%&/()=_-'+?*:;abcxyzáéýúíóþæðöÁÉÝÚÍÓÞÆÐÖ" );
+        m_keyphrases.push_back( " ,.!\"#$%&/()=_-'+?*:;ABCXYZáéýúíóþæðöÁÉÝÚÍÓÞÆÐÖ" );
+        m_keyphrases.push_back( " ,.!\"#$%&/()=_-'+?*:;ABCxyzáéýúíóþæðöÁÉÝÚÍÓÞÆÐÖ" );
+        m_keyphrases.push_back( "T" );
+        m_keyphrases.push_back( "TH" );
+        m_keyphrases.push_back( "THE QUICK BROWN FOX JUMPS OVER THE LAZY D" );
+        m_keyphrases.push_back( "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG" );
+        m_keyphrases.push_back( "THE quick" );
+        m_keyphrases.push_back( "THE QUICK brown fox" );
+        m_keyphrases.push_back( "THE QUICK BROWN FOX jumps over the lazy d" );
+        m_keyphrases.push_back( "THE QUICK BROWN FOX JUMPS over the lazy dog" );
+     }
 
 	/// Test decryption on all single character strings with the same keyphrase
     void testSingleCharsSameKeyphrase(void)
     {
-        TS_FAIL( "Test not implemented" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "B", m_keyphrases[1]), "a" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "C", m_keyphrases[1]), "b" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "D", m_keyphrases[1]), "c" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "E", m_keyphrases[1]), "d" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "F", m_keyphrases[1]), "e" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "G", m_keyphrases[1]), "f" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "H", m_keyphrases[1]), "g" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "I", m_keyphrases[1]), "h" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "J", m_keyphrases[1]), "i" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "K", m_keyphrases[1]), "j" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "L", m_keyphrases[1]), "k" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "M", m_keyphrases[1]), "l" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "N", m_keyphrases[1]), "m" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "O", m_keyphrases[1]), "n" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "P", m_keyphrases[1]), "o" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "Q", m_keyphrases[1]), "p" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "R", m_keyphrases[1]), "q" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "S", m_keyphrases[1]), "r" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "T", m_keyphrases[1]), "s" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "U", m_keyphrases[1]), "t" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "V", m_keyphrases[1]), "u" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "W", m_keyphrases[1]), "v" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "X", m_keyphrases[1]), "w" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "Y", m_keyphrases[1]), "x" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "Z", m_keyphrases[1]), "y" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "A", m_keyphrases[1]), "z" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "A", m_keyphrases[25]), "t" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "B", m_keyphrases[25]), "h" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "C", m_keyphrases[25]), "e" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "D", m_keyphrases[25]), "q" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "E", m_keyphrases[25]), "u" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "F", m_keyphrases[25]), "i" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "G", m_keyphrases[25]), "c" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "H", m_keyphrases[25]), "k" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "I", m_keyphrases[25]), "b" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "J", m_keyphrases[25]), "r" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "K", m_keyphrases[25]), "o" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "L", m_keyphrases[25]), "w" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "M", m_keyphrases[25]), "n" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "N", m_keyphrases[25]), "f" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "O", m_keyphrases[25]), "x" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "P", m_keyphrases[25]), "j" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "Q", m_keyphrases[25]), "m" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "R", m_keyphrases[25]), "p" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "S", m_keyphrases[25]), "s" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "T", m_keyphrases[25]), "v" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "U", m_keyphrases[25]), "l" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "V", m_keyphrases[25]), "a" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "W", m_keyphrases[25]), "z" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "X", m_keyphrases[25]), "y" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "Y", m_keyphrases[25]), "d" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "Z", m_keyphrases[25]), "g" );
     }
     /// Test decryption on a en empty string using various keyphrases
     void testEmptyString(void)
     {
         TS_FAIL( "Test not implemented" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "", m_keyphrases[0]), "" );
         TS_ASSERT_EQUALS( substitution_decrypt( "", m_keyphrases[1]), "" );
         TS_ASSERT_EQUALS( substitution_decrypt( "", m_keyphrases[2]), "" );
         TS_ASSERT_EQUALS( substitution_decrypt( "", m_keyphrases[3]), "" );
@@ -69,12 +117,12 @@ public:
         TS_ASSERT_EQUALS( substitution_decrypt( "", m_keyphrases[23]), "" );
         TS_ASSERT_EQUALS( substitution_decrypt( "", m_keyphrases[24]), "" );
         TS_ASSERT_EQUALS( substitution_decrypt( "", m_keyphrases[25]), "" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "", m_keyphrases[26]), "" );
     }
     /// Test decryption on a single character using various keyphrases
     void testSingleCharShiftedByAll(void)
     {
         TS_FAIL( "Test not implemented" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "A", m_keyphrases[0]), "b" );
         TS_ASSERT_EQUALS( substitution_decrypt( "A", m_keyphrases[1]), "z" );
         TS_ASSERT_EQUALS( substitution_decrypt( "A", m_keyphrases[2]), "y" );
         TS_ASSERT_EQUALS( substitution_decrypt( "A", m_keyphrases[3]), "x" );
@@ -126,38 +174,21 @@ public:
     void testKeyphraseWithLowercaseChars(void)
     {
         TS_FAIL( "Test not implemented" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[30]), "foo" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[31]), "enn" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[32]), "foo" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[33]), "enn" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[30]), "bar" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[31]), "azq" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[32]), "bar" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[33]), "azq" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[30]), "smu" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[31]), "rlt" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[32]), "smu" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[33]), "rlt" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[0]), "foo" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[1]), "enn" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[24]), "foo" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[25]), "enn" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[0]), "bar" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[1]), "azq" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[24]), "bar" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[26]), "azq" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[0]), "smu" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[1]), "rlt" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[24]), "smu" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[26]), "rlt" );
     }
     /// Test decryption with a keyphrase that includes uppercase characters only
     void testKeyphraseWithUppercaseChars(void)
-    {
-        TS_FAIL( "Test not implemented" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[34]), "foo" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[35]), "enn" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[36]), "foo" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[37]), "enn" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[34]), "bar" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[35]), "azq" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[36]), "bar" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[37]), "azq" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[34]), "smu" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[35]), "rlt" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[36]), "smu" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[37]), "rlt" );
-    }
-    /// Test decryption with a keyphrase that includes mixedcase characters
-    void testKeyphraseWithMixedcaseChars(void)
     {
         TS_FAIL( "Test not implemented" );
         TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[38]), "foo" );
@@ -173,10 +204,28 @@ public:
         TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[40]), "smu" );
         TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[41]), "rlt" );
     }
+    /// Test decryption with a keyphrase that includes mixedcase characters
+    void testKeyphraseWithMixedcaseChars(void)
+    {
+        TS_FAIL( "Test not implemented" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[34]), "foo" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[35]), "enn" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[36]), "foo" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "FOO", m_keyphrases[37]), "enn" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[34]), "bar" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[35]), "azq" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[36]), "bar" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "BAR", m_keyphrases[37]), "azq" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[34]), "smu" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[35]), "rlt" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[36]), "smu" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "SMU", m_keyphrases[37]), "rlt" );
+    }
     /// Test a string containing all the letters of the alphabet
     void testTheQuickBrownFox(void)
     {
         TS_FAIL( "Test not implemented" );
+        TS_ASSERT_EQUALS( substitution_decrypt( "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", m_keyphrases[0]), "rfc osgai zpmul dmv hsknq mtcp rfc jyxw bme" );
         TS_ASSERT_EQUALS( substitution_decrypt( "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", m_keyphrases[1]), "sgd pthbj aqnvm enw itlor nudq sgd kzyx cnf" );
         TS_ASSERT_EQUALS( substitution_decrypt( "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", m_keyphrases[2]), "rfc osgai zpmul dmv hsknq mtcp rfc jyxw bme" );
         TS_ASSERT_EQUALS( substitution_decrypt( "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", m_keyphrases[3]), "qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald" );
@@ -202,7 +251,6 @@ public:
         TS_ASSERT_EQUALS( substitution_decrypt( "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", m_keyphrases[23]), "rfc osgai zpmul dmv hsknq mtcp rfc jyxw bme" );
         TS_ASSERT_EQUALS( substitution_decrypt( "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", m_keyphrases[24]), "qeb nrfzh yoltk clu grjmp lsbo qeb ixwv ald" );
         TS_ASSERT_EQUALS( substitution_decrypt( "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", m_keyphrases[25]), "sgd pthbj aqnvm enw itlor nudq sgd kzyx cnf" );
-        TS_ASSERT_EQUALS( substitution_decrypt( "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", m_keyphrases[26]), "rfc osgai zpmul dmv hsknq mtcp rfc jyxw bme" );
     }
     /// Test decrypting with an empty keyphrase
     void testEmptyKeyphrase(void)
