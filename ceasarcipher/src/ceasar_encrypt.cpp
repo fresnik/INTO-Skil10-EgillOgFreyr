@@ -1,6 +1,6 @@
 #include "ceasar_encrypt.h"
 
-const unsigned int NO_OF_ALPHABET_LETTERS = 26;
+static const unsigned int NO_OF_ALPHABET_LETTERS = 26;
 
 std::string ceasar_encrypt( const std::string & inputString, int shiftValue )
 {
@@ -35,6 +35,5 @@ std::string ceasar_encrypt( const std::string & inputString, int shiftValue )
 
         outputString[i] = encryptedChar;
     }
-
     return outputString;
 }
