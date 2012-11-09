@@ -1,4 +1,4 @@
-SUBDIRS = ceasarcipher substituioncipher
+SUBDIRS = ceasarcipher substitutioncipher
      
 .PHONY: subdirs $(SUBDIRS)
      
