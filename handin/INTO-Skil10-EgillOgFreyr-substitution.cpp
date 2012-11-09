@@ -1,5 +1,5 @@
-/*! \file INTO-Skil10-EgillOgFreyr-ceasar.cpp
- *  \brief Encrypts and decrypts messages using a Ceasar cipher.
+/*! \file INTO-Skil10-EgillOgFreyr-substitution.cpp
+ *  \brief Encrypts and decrypts messages using a keyword substitution cipher.
  *  \date 9.11.2012
  *  \author Freyr Bergsteinsson <freyrb12@ru.is>
  *  \author Egill Bjornsson <egillb12@ru.is>
