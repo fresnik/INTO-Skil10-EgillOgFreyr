@@ -70,31 +70,32 @@ public:
     /// Test encryption on a single character shifted by every number
     void testSingleCharShiftedByAll(void)
     {
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 1), "B" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 2), "C" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 3), "D" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 4), "E" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 5), "F" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 6), "G" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 7), "H" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 8), "I" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 9), "J" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 10), "K" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 11), "L" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 12), "M" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 13), "N" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 14), "O" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 15), "P" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 16), "Q" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 17), "R" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 18), "S" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 19), "T" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 20), "U" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 21), "V" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 22), "W" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 23), "X" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 24), "Y" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "a", 25), "Z" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 1), "J" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 2), "K" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 3), "L" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 4), "M" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 5), "N" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 6), "O" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 7), "P" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 8), "Q" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 9), "R" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 10), "S" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 11), "T" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 12), "U" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 13), "V" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 14), "W" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 15), "X" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 16), "Y" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 17), "Z" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 18), "A" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 19), "B" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 20), "C" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 21), "D" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 22), "E" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 23), "F" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 24), "G" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 25), "H" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "i", 26), "I" );
     }
     /// Test encryption with a too high (>=26) shift value
     void testHighShiftValue(void)
