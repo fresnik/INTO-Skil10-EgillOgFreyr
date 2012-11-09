@@ -117,8 +117,8 @@ public:
     void testTheQuickBrownFox(void)
     {
         TS_ASSERT_EQUALS( ceasar_encrypt( "the quick brown fox jumps over the lazy dog", 1), "UIF RVJDL CSPXO GPY KVNQT PWFS UIF MBAZ EPH" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", 2), "VJG SWKEM DTQYP HQZ LWORU QXGT VJG NCBA FQI" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", 3), "WKH TXLFN EURZQ IRA MXPSV RYHU WKH ODCB GRJ" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "the quick brown fox jumps over the lazy dog", 2), "VJG SWKEM DTQYP HQZ LWORU QXGT VJG NCBA FQI" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "the quick brown fox jumps over the lazy dog", 3), "WKH TXLFN EURZQ IRA MXPSV RYHU WKH ODCB GRJ" );
     }
     /// Test uppercase characters
     void testUpperCaseCharacters(void)
@@ -141,8 +141,8 @@ public:
     {
         TS_ASSERT_EQUALS( ceasar_encrypt( "", 0), "" );
         TS_ASSERT_EQUALS( ceasar_encrypt( "a", 0), "A" );
-        TS_ASSERT_EQUALS( ceasar_encrypt( "A", 0), "A" );
         TS_ASSERT_EQUALS( ceasar_encrypt( "foo", 0), "FOO" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( "FOO", 0), "FOO" );
         TS_ASSERT_EQUALS( ceasar_encrypt( "bar", 0), "BAR" );
         TS_ASSERT_EQUALS( ceasar_encrypt( "smu", 0), "SMU" );
         TS_ASSERT_EQUALS( ceasar_encrypt( "the quick brown fox jumps over the lazy dog", 0), "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG" );
@@ -150,6 +150,9 @@ public:
     /// Test illegal characters
     void testIllegalCharacters(void)
     {
-        TS_ASSERT_EQUALS( ceasar_encrypt( " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöwxyÁÉÝÚÍÓÞÆÐÖ", 3), " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöZABÁÉÝÚÍÓÞÆÐÖ" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöÁÉÝÚÍÓÞÆÐÖ", 3), " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöÁÉÝÚÍÓÞÆÐÖ" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöabcwxyÁÉÝÚÍÓÞÆÐÖ", 3), " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöDEFZABÁÉÝÚÍÓÞÆÐÖ" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöDEFtuvÁÉÝÚÍÓÞÆÐÖ", 3), " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöGHIWXYÁÉÝÚÍÓÞÆÐÖ" );
+        TS_ASSERT_EQUALS( ceasar_encrypt( " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöGHIQRSÁÉÝÚÍÓÞÆÐÖ", 3), " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöJKLTUVÁÉÝÚÍÓÞÆÐÖ" );
     }
 };

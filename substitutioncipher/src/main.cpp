@@ -4,23 +4,86 @@
 
 using namespace std;
 
+// Forward delcarations
+char choiceMenu();
+string getKeyphrase();
+
 int main()
 {
-    cout << "Welcome!" << endl;
-    cout << substitution_encrypt( "Welcome",
-                                  "super mario brothers theme is awesome") << endl;
+    char menuItemChosen;
 
-    // TODO: Display a menu of choices (1 for encrypt, 2 for decrypt, q for quit)
-    // TODO: Ask the user for menu choice
-    // TODO: If the user chose to quit, exit the program
-    // TODO: Ask the user for the string to encrypt/decrypt
-    // TODO: Check if input string is legal, keep asking for a new one until it is
-    // TODO: Ask the user for the keyphrase to use for encryption/decryption
-    // TODO: Check if keyphrase string is legal, keep asking for a new one until it is
-    // TODO: If user chose encrypt, call the function substitution_encrypt( inputString, shiftValue )
-    // TODO: If user chose decrypt, call the function substitution_decrypt( inputString, shiftValue )
-    // TODO: Repeat (?)
+    do
+    {
+        string message;
+        string keyphrase;
+
+        menuItemChosen = choiceMenu();
+        switch( menuItemChosen )
+        {
+            case '1':
+            {
+                cout << "  -  -  -  Enter message to encrypt   -  -  - " << endl;
+                getline( cin, message );
+                cout << "  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - " << endl << endl;
+
+                keyphrase = getKeyphrase();
+
+                cout << endl << "  -  -  -  Encrypted text    -  -  -  -  -  - " << endl;
+                cout << substitution_encrypt( message, keyphrase );
+                cout << endl << "  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - " << endl;
+            }
+                break;
+            case '2':
+            {
+                cout << "  -  -  -  Enter message to decrypt   -  -  -  " << endl;
+                getline( cin, message );
+                cout << "  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  " << endl << endl;
+
+                keyphrase = getKeyphrase();
+
+                cout << endl << "  -  -  -  Decrypted message -  -  -  -  -  - " << endl;
+                cout << substitution_decrypt( message, keyphrase );
+                cout << endl << "  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - " << endl;
+            }
+                break;
+            case 'q':
+            {
+                cout << endl << "  -  -  -  Program closing   -  -  -  -  -  - " << endl;
+                break;
+            }
+        }
+    } while ( menuItemChosen != 'q' );
 
     return 0;
 }
 
+/// Displays a menu of choices and gets user input, returns the menu item chosen
+char choiceMenu()
+{
+    char inputChoice;
+    cout << "Enter:" << endl
+      << "\t1 to encrypt a message" << endl
+      << "\t2 to decrypt a message" << endl
+      << "\tq to leave the program" << endl;
+    do
+    {
+        cin >> inputChoice;
+        cin.ignore( 1024, '\n' );
+        inputChoice = tolower( inputChoice );
+        if ( inputChoice != '1' && inputChoice != '2' && inputChoice != 'q' )
+        {
+            cout << "Please enter a valid input (1, 2 or q)!" << endl;
+        }
+    }
+    while ( inputChoice != '1' && inputChoice != '2' && inputChoice != 'q' );
+    return inputChoice;
+}
+
+/// Get a keyphrase from the user
+string getKeyphrase()
+{
+    cout << "Enter the keyphrase: ";
+    string keyphrase;
+    getline( cin, keyphrase );
+    return keyphrase;
+}

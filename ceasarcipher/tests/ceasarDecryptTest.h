@@ -141,15 +141,18 @@ public:
     {
         TS_ASSERT_EQUALS( ceasar_decrypt( "", 0), "" );
         TS_ASSERT_EQUALS( ceasar_decrypt( "A", 0), "a" );
-        TS_ASSERT_EQUALS( ceasar_decrypt( "a", 0), "a" );
         TS_ASSERT_EQUALS( ceasar_decrypt( "FOO", 0), "foo" );
+        TS_ASSERT_EQUALS( ceasar_decrypt( "foo", 0), "foo" );
         TS_ASSERT_EQUALS( ceasar_decrypt( "BAR", 0), "bar" );
         TS_ASSERT_EQUALS( ceasar_decrypt( "SMU", 0), "smu" );
-        TS_ASSERT_EQUALS( ceasar_decrypt( "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", 1), "the quick brown fox jumps over the lazy dog" );
+        TS_ASSERT_EQUALS( ceasar_decrypt( "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG", 0), "the quick brown fox jumps over the lazy dog" );
     }
     /// Test illegal characters
     void testIllegalCharacters(void)
     {
-        TS_ASSERT_EQUALS( ceasar_decrypt( " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöbarÁÉÝÚÍÓÞÆÐÖ", 3), " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöyxoÁÉÝÚÍÓÞÆÐÖ" );
+        TS_ASSERT_EQUALS( ceasar_decrypt( " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöÁÉÝÚÍÓÞÆÐÖ", 3), " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöÁÉÝÚÍÓÞÆÐÖ" );
+        TS_ASSERT_EQUALS( ceasar_decrypt( " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöABCXYZÁÉÝÚÍÓÞÆÐÖ", 3), " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöxyzuvwÁÉÝÚÍÓÞÆÐÖ" );
+        TS_ASSERT_EQUALS( ceasar_decrypt( " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöDEFuvwÁÉÝÚÍÓÞÆÐÖ", 3), " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöabcrstÁÉÝÚÍÓÞÆÐÖ" );
+        TS_ASSERT_EQUALS( ceasar_decrypt( " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðöghirstÁÉÝÚÍÓÞÆÐÖ", 3), " ,.!\"#$%&/()=_-'+?*:;áéýúíóþæðödefopqÁÉÝÚÍÓÞÆÐÖ" );
     }
 };

@@ -1,77 +1,89 @@
 #include <iostream>
 #include "ceasar_encrypt.h"
 #include "ceasar_decrypt.h"
-#include <stdlib.h>
 
 using namespace std;
 
+// Forward delcarations
 char choiceMenu();
+int getShiftValue();
 
 int main()
 {
-    switch(choiceMenu())
+    char menuItemChosen;
+
+    do
     {
-        case '1':
+        string message;
+        int shiftValue;
+
+        menuItemChosen = choiceMenu();
+        switch( menuItemChosen )
         {
-            cout<<"  -  -  -  Enter message to encrypt   -  -  -  \n";
-            string message;
-            getline(cin, message);
-            cout<<"  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  \n\n";
-            cout<<"Enter shift value for cypher: ";
+            case '1':
+            {
+                cout << "  -  -  -  Enter message to encrypt   -  -  - " << endl;
+                getline( cin, message );
+                cout << "  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - " << endl << endl;
 
-            int shift;
-            cin>>shift;
-            cout<<"\n  -  -  -  encrypted text    -  -  -  -  -  -  \n";
-            cout<<ceasar_encrypt(message, shift);
-            cout<<"\n  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  \n";
+                shiftValue = getShiftValue();
+
+                cout << endl << "  -  -  -  Encrypted text    -  -  -  -  -  - " << endl;
+                cout << ceasar_encrypt( message, shiftValue );
+                cout << endl << "  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - " << endl;
+            }
+                break;
+            case '2':
+            {
+                cout << "  -  -  -  Enter message to decrypt   -  -  -  " << endl;
+                getline( cin, message );
+                cout << "  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  " << endl << endl;
+
+                shiftValue = getShiftValue();
+
+                cout << endl << "  -  -  -  Decrypted message -  -  -  -  -  - " << endl;
+                cout << ceasar_decrypt( message, shiftValue );
+                cout << endl << "  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - " << endl;
+            }
+                break;
+            case 'q':
+            {
+                cout << endl << "  -  -  -  Program closing   -  -  -  -  -  - " << endl;
+                break;
+            }
         }
-            break;
-        case '2':
-        {
-            cout<<"  -  -  -  Enter message to decrypt   -  -  -  \n";
-            string message;
-            getline(cin, message);
-            cout<<"  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  \n\n";
-            cout<<"Enter shift value for decypher: ";
-            int shift;
-            cin>>shift;
-            cout<<"\n  -  -  -  Decryptd message  -  -  -  -  -  -  \n";
-            cout<<ceasar_decrypt(message, shift);
-            cout<<"\n  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  \n";
-        }
-            break;
-        case 'q':
-        case 'Q':
-            cout<<"\n  -  -  -  Program closing   -  -  -  -  -  -  \n";
-            exit(0);
-            break;
-    }
-
-
-    //X TODO: Display a menu of choices (1 for encrypt, 2 for decrypt, q for quit)
-    //X TODO: Ask the user for menu choice
-    //X TODO: If the user chose to quit, exit the program
-    //X TODO: Ask the user for the number of letters to shift
-    //X TODO: Ask the user for the string to encrypt/decrypt
-    //(gert í föllunum) TODO: Check if input string is legal, keep asking for a new one until it is
-    //X TODO: If user chose encrypt, call the function ceasar_encrypt( inputString, shiftValue )
-    //X TODO: If user chose decrypt, call the function ceasar_decrypt( inputString, shiftValue )
-    //X TODO: Repeat (?)
+    } while ( menuItemChosen != 'q' );
 
     return 0;
 }
 
+/// Displays a menu of choices and gets user input, returns the menu item chosen
 char choiceMenu()
 {
-    cout <<"Enter:\n\t1 to encrypt a message \n\t2 to decrypt a message \n\tq to leave the program\n";
     char inputChoice;
+    cout << "Enter:" << endl
+      << "\t1 to encrypt a message" << endl
+      << "\t2 to decrypt a message" << endl
+      << "\tq to leave the program" << endl;
     do
     {
         cin >> inputChoice;
-        cin.ignore(1024,'\n');
-        if(inputChoice!='1' && inputChoice!='2' && inputChoice!='q' && inputChoice!='Q')
-            cout<<"Please enter a valid input(1, 2 or q)\n";
+        cin.ignore( 1024, '\n' );
+        inputChoice = tolower( inputChoice );
+        if ( inputChoice != '1' && inputChoice != '2' && inputChoice != 'q' )
+        {
+            cout << "Please enter a valid input (1, 2 or q)!" << endl;
+        }
     }
-    while(inputChoice!='1' && inputChoice!='2' && inputChoice!='q' && inputChoice!='Q');
+    while ( inputChoice != '1' && inputChoice != '2' && inputChoice != 'q' );
     return inputChoice;
+}
+
+/// Ask the user for the number of letters to shift
+int getShiftValue()
+{
+    cout << "Enter shift value: ";
+    int shiftValue;
+    cin >> shiftValue;
+    return shiftValue;
 }

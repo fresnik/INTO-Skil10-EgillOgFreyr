@@ -4,36 +4,34 @@ static const unsigned int NO_OF_ALPHABET_LETTERS = 26;
 
 std::string ceasar_decrypt( const std::string & inputString, int shiftValue )
 {
-    // Make a copy of the input string and work with that
-    std::string outputString( inputString );
+    std::string outputString;
 
     // We're working with unsigned char types, so let's constrain the
     // shiftValue right away as to not get overflow for high values
     shiftValue %= NO_OF_ALPHABET_LETTERS;
 
-    for ( unsigned int i = 0; i < outputString.length(); i++)
+    for ( unsigned int i = 0; i < inputString.length(); i++)
     {
+        char decryptedChar = inputString[i];
+
         // Convert lower case letters to upper case
-        if ( outputString[i] >= 'a' && outputString[i] <= 'z' )
+        if ( decryptedChar >= 'A' && decryptedChar <= 'Z' )
         {
-            outputString[i] -= 'a' - 'A';
+            decryptedChar = tolower( decryptedChar );
         }
 
-        char plainTextChar = outputString[i];
-        char encryptedChar = plainTextChar;
-
         // Shift a plaintext letter
-        if ( plainTextChar >= 'A' && plainTextChar <= 'Z')
+        if ( decryptedChar >= 'a' && decryptedChar <= 'z')
         {
 
             // Some character shuffling being done here, the end result
             // is the decrypted character, shifted and wrapped around
             // the end of the alphabet if shifted beyond the end
-            encryptedChar = (plainTextChar - 'A') - shiftValue;
-            encryptedChar %= NO_OF_ALPHABET_LETTERS;
-            encryptedChar += 'A';
+            decryptedChar = (decryptedChar - 'a') - shiftValue + NO_OF_ALPHABET_LETTERS;
+            decryptedChar %= NO_OF_ALPHABET_LETTERS;
+            decryptedChar += 'a';
         }
-        outputString[i] = encryptedChar;
+        outputString.append( 1, decryptedChar );
     }
     return outputString;
 }
