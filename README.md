@@ -13,3 +13,12 @@ This project contains two programs that uses known encryption algorithms. One pr
 
 Each program contains a source directory, containing the source code for the program, and a tests directory, containing unit tests for the encryption and decryption algorithms. The unit tests use [CxxTest](http://cxxtest.com/), so be sure to have it installed if you plan on running the unit tests. By default, running make will also generate and run the unit tests. To only compile the programs, run make inside the source code directory for each program.
 
+Hand-in files
+-------------
+
+The `handin` directory contain the following files which were used for hand-in of the project:
+
+- INTO-Skil10-EgillOgFreyr-ceasar.cpp
+- INTO-Skil10-EgillOgFreyr-substitution.cpp
+
+The hand-in required a single cpp file for each program, so the development source files were merged together to make these files. The subsequent [code documnetation](http://fresnik.com/into/skil10/doc/html/) is based on this code as well.
